@@ -1,0 +1,31 @@
+import {
+  Component
+} from "react";
+import {
+  connect
+} from "react-redux";
+
+class App extends Component {
+  handleClick() {
+    this.props.dispatch({
+      type:"WEBSITE_INITIALIZED",
+      data: {
+        "nigga":true
+      }
+    })
+  }
+  render() {
+    return ( <div className = "App" >
+      <button onClick={() => this.handleClick()}>asdsad</button>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    ...state
+  }
+}
+
+export default connect(mapStateToProps)(App);

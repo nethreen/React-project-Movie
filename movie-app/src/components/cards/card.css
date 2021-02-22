@@ -1,0 +1,11 @@
+.card img{
+    height: 250px;
+    object-fit: cover;
+}
+.card{
+    max-width: 300px;
+}
+.card-deck .card{
+    min-width: 100%;
+    margin-left: 0;
+}
