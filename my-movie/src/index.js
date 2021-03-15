@@ -4,5 +4,12 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 // js
 
 import App from "./components/App";
+import store from './redux/store';
+import {Provider} from  "react-redux";
 
-ReactDom.render(<App />, document.getElementById("root"));
+ReactDom.render(
+    <Provider store={store}>
+        <App />
+    </Provider>
+
+, document.getElementById("root"));
