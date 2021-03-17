@@ -423,9 +423,92 @@ body{
     background: linear-gradient(135deg, #6e8efb, #a777e3);
     color: #fff;
 }
-    
+ 
+.cart-page .card img{
+    height: 200px;
+    object-fit: contain;
+}
+
+.cart-page .card {
+    background: #77A1D3;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+}
+.cart-page .card-price{
+    width: fit-content !important;
+    font-size: 30px;
+}
+
+.cart-page .card-text{
+    height: fit-content;
+    -webkit-line-clamp: 1;
+}
+.cart-button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cart-remove{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: transparent;
+    border: none;
+}
+
+.cart-button-input{
+    width: 50px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+/* .cart-remove svg{
+    box-shadow:
+    0 0 10px 1px #000,
+    0 0 10px 1px #f0f,
+    0 0 10px 1px #0ff;
+    border-radius: 50%;
+    padding: 2px;
+} */
+.cart-page-price{
+    height: 250px;
+    background-color: rgba(255, 255, 255, 0.461);
+    z-index: 22;
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-direction: column;
+     box-shadow:
+    inset 0 0 20px rgba(255, 255, 255, 0.749),
+    inset 20px 0 30px #655ae1c1,
+    inset -20px 0 30px #722ae6b5,
+    inset 20px 0 10px #6e8ffbb3,
+    inset -20px 0 10px #a877e3ae,
+    0 0 20px rgba(255, 255, 255, 0.79),
+    -5px 0 30px rgba(255, 0, 255, 0.756),
+    10px 0 80px #e4b5cbb3
+}
+
 
 @media (max-width: 767.9px) {
+    .cart-page-price{
+        width: 100vw;
+        height: 15vh;
+        background-color: rgba(0, 0, 0, 0.975);
+        box-shadow: 0 1px 30px rgba(250, 250, 250, 0.30), 0 1px 12px rgba(250, 250, 250, 0.22);
+        position: fixed;
+        bottom: 0;
+        left: 0;
+    }
+
     .sm-order-4 {
         order: 3;
     }

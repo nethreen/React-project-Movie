@@ -1,49 +1,49 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { Component } from "react";
 
 class EditMovie extends Component {
 
 
-    state = {
-        name: "",
-        rating: "",
-        imageURL: "",
-        overview: "",
-        price: ""
-    }
+    // state = {
+    //     name: "",
+    //     rating: "",
+    //     imageURL: "",
+    //     overview: "",
+    //     price: ""
+    // }
 
-    async componentDidMount() {
-        const id = this.props.match.params.id;
-        const response =  await axios.get(`http://localhost:3002/movies/${id}`);
-        // console.log(id)
-        // console.log(response)
-        const movie = response.data;
+    // async componentDidMount() {
+    //     const id = this.props.match.params.id;
+    //     const response =  await axios.get(`http://localhost:3002/movies/${id}`);
+    //     // console.log(id)
+    //     // console.log(response)
+    //     const movie = response.data;
 
-        this.setState({
-            name : movie.name,
-            rating : movie.rating,
-            imageURL : movie.imageURL,
-            overview : movie.overview,
-            price : movie.price
-        })
-    }
-    addMovieSubmit = (e) =>{
-        e.preventDefault();
+    //     this.setState({
+    //         name : movie.name,
+    //         rating : movie.rating,
+    //         imageURL : movie.imageURL,
+    //         overview : movie.overview,
+    //         price : movie.price
+    //     })
+    // }
+    // addMovieSubmit = (e) =>{
+    //     e.preventDefault();
 
-        const { name, rating, imageURL, overview,price } = this.state;
+    //     const { name, rating, imageURL, overview,price } = this.state;
 
-        const id = this.props.match.params.id;
+    //     const id = this.props.match.params.id;
 
-        const updatedMovie = {
-            name,
-            rating,
-            imageURL,
-            overview,
-            price
-        }
-        this.props.onEditMovie(id, updatedMovie)
-        this.props.history.push("/")
-    }
+    //     const updatedMovie = {
+    //         name,
+    //         rating,
+    //         imageURL,
+    //         overview,
+    //         price
+    //     }
+    //     this.props.onEditMovie(id, updatedMovie)
+    //     this.props.history.push("/")
+    // }
 
 
 

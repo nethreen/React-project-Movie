@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "../components/App.css";
 import { Link } from "react-router-dom";
-
+import {connect} from 'react-redux';
+import { addToCart } from "../redux/actions/card.action";
+import { bindActionCreators } from "redux";
 
 class MovieList extends Component {
-  
-
-
+ 
   render() {
     return (
       <div className="row">
@@ -28,25 +28,9 @@ class MovieList extends Component {
                   {movie.title ? movie.title : movie.name}
                 </h5>
                 <p className="card-text">{movie.overview}</p>
-                <div className="d-flex justify-content-between align-items-center">
-                  <button
-                    type="button"
-                    onClick={(event) => this.props.deleteCardProp(movie)}
-                    className="card-delete"
-                  >
-                    Delete
-                  </button>
-                  <Link
-                    to={`edit/${movie.id}`}
-                    type="button"
-                    className="card-edit"
-                  >
-                    Edit
-                  </Link>
-                </div>
                 <div className="add-button-parent">
                   <button
-                    className="add-button" onClick={() => this.props.increment({movie})}>
+                    className="add-button" onClick={() => this.props.addToCart(movie.id)}>
                     Buy
                   </button>
                   <span className="card-price">
@@ -55,12 +39,21 @@ class MovieList extends Component {
                 </div>
               </div>
             </div>
+         
           </div>
         ))}
       </div>
     );
   }
 }
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      addToCart: (id) => addToCart(id),
+    },
+    dispatch
+  );
+};
 
 
-export default MovieList;
+export default connect(null,mapDispatchToProps)(MovieList);

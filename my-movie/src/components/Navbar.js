@@ -1,4 +1,4 @@
-import React,{Component}  from 'react';
+import React, {useEffect, useState}  from 'react';
 import Logo from '../img/logo.png';
 import {Link} from "react-router-dom";
 import Popup from 'reactjs-popup';
@@ -6,9 +6,20 @@ import 'reactjs-popup/dist/index.css';
 import { connect } from 'react-redux';
 
 
-class Navbar extends Component {
+const Navbar = ({cart}) =>  {
 
-    render() {
+const [cartCount, setCartCount] = useState(0);
+
+useEffect(() => {
+    let count = 0;
+    cart.forEach((item) => {
+      count += item.qty;
+    });
+
+    setCartCount(count);
+  }, [cart, cartCount]);
+
+
         return (
         <div className="navbar-parent">
                 <div className="form-row py-2 align-items-center">
@@ -27,7 +38,7 @@ class Navbar extends Component {
                                 </g>
                             </svg>
 
-                            <span className="navbar-cart-span">{this.props.cart}</span>
+                            <span className="navbar-cart-span">{cartCount}</span>
                         </Link>
                     </div>
                     <div className="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-4">
@@ -36,7 +47,9 @@ class Navbar extends Component {
                              type="button">
                             <span></span>
                             <span></span>
-                            <span></span></button>} position="right center">
+                            <span></span>
+                            </button>
+                            } position="right center">
                            <div>
                             <Link to="/add"  className="add-button popup-buttons">
                                 My Profile
@@ -65,7 +78,6 @@ class Navbar extends Component {
                 </div>
         </div>
         )
-    }
 }
 const mapStateToProps = (state) => {
     return {

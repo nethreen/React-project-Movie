@@ -12,7 +12,7 @@ import About from '../components/about';
 import Cart from '../components/Cart';
 
 // import CarouselSoon from '../components/CarouselSoon';
-import axios from 'axios';
+// import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -20,71 +20,52 @@ import { cartAction } from "../redux/actions/card.action";
 
 class App extends React.Component {
     state = {
-        movies :  [],
         search: "",  
         value : 0,    
 
     }
 
-    // axios api
 
-    componentDidMount() {
-        this.getMovie()
-    }
-    
+    // deleteCard =(movie) =>{
+    //     // this.props.movies`${movie.id}`
+    //     const newMovieList = this.state.movies.filter(
+    //         mov => mov.id !== movie.id 
+    //         )
+    //         this.setState(state => ({
+    //             movies: newMovieList
+    //     }))
+    // }
+    // // axios api add
+    // AddMovie = async (movie) =>{
+    //   await  axios.post(this.state.movies, movie);
+    //     this.setState(state => ({
+    //         movies: state.movies.concat([movie])
+    //     }))
+    //     this.getMovie()
 
-    
-    async getMovie() {
-        const response = await axios.get("http://localhost:3002/movies");
-        this.setState({movies : response.data})
-    }
+    // }
+    // // axios api edit
+    // EditMovie = async (id, updatedMovie) =>{
+    //     await  axios.put(this.state.movies`${id}`, updatedMovie);
+    //     this.getMovie()
 
-    // axios api delete
-
-    deleteCard = async (movie) =>{
-        axios.delete(`http://localhost:3002/movies/${movie.id}`)
-        const newMovieList = this.state.movies.filter(
-            mov => mov.id !== movie.id 
-            )
-            this.setState(state => ({
-                movies: newMovieList
-        }))
-    }
-    // axios api add
-    AddMovie = async (movie) =>{
-      await  axios.post(`http://localhost:3002/movies/`, movie);
-        this.setState(state => ({
-            movies: state.movies.concat([movie])
-        }))
-        this.getMovie()
-
-    }
-    // axios api edit
-    EditMovie = async (id, updatedMovie) =>{
-        await  axios.put(`http://localhost:3002/movies/${id}`, updatedMovie);
-        this.getMovie()
-
-    }
+    // }
 
 
     searchMovie = (event) =>{
         this.setState({search:event.target.value})
     }
 
-    incrementCard = (movie) => {
-
+    addToCart = (movie) => {
         this.setState({ value: this.state.value + 1 }, () =>
           this.props.cartAction(this.state.value)
         );
-
-        console.log(movie)
-        console.log(this.state)   
     };
 
 
     render() {
 
-        let filterMovies = this.state.movies.filter(
+        let filterMovies = this.props.movies.filter(
             (movie) => {
                 if (movie.title) {
                     return movie.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
@@ -115,8 +96,8 @@ class App extends React.Component {
                                     </div>
                                     <MovieList             
                                         movies={filterMovies}
-                                        deleteCardProp = {this.deleteCard}
-                                        increment = {this.incrementCard}
+                                        // deleteCardProp = {this.deleteCard}
+                                        // increment = {this.incrementCard}
                                         />
                                     
                                 </>
@@ -160,4 +141,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch
     );
   };
-export default connect(null, mapDispatchToProps)(App);
+
+  const mapStateToProps = (state) => {
+    return {
+        movies : state.cart.movies
+    }
+  }
+export default connect(mapStateToProps,mapDispatchToProps)(App);
